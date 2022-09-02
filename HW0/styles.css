@@ -1,6 +1,32 @@
+/* Website background */
 body {
-    background-color: #FAFAFA;
-    min-width: 250px;
+    /* Blue/white gradient */
+    background-image: linear-gradient(to bottom right, #89CFF0, white);
+    /* Disabling scroll */
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden
+}
+
+/* Styles a container that holds all the checklist functionality */
+.container
+{
+    border-radius: 25px;
+    margin-top: 6%;
+    margin-bottom:100%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 20px solid white;
+    background-color:white;
+    width: 60%;
+    /* Shadow values from https://www.w3schools.com/css/css3_buttons.asp */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* Create a font family from  */
+@font-face {
+    font-family: visby;
+    src: url(visby_medium.otf);
 }
 
 /* Include the padding and border in an element's total width and height */
@@ -12,9 +38,11 @@ body {
 ul {
     margin: 0;
     padding: 0;
+    /* Adding overflow & scrolling functionality */
+    height: 250px;
+    overflow:auto;
 }
-
-/* Style the list items */
+/* Style the checklist*/
 ul li {
     cursor: pointer;
     position: relative;
@@ -25,7 +53,7 @@ ul li {
     font-size: 18px;
     transition: 0.2s;
 
-    /* make the list items unselectable */
+    /* make the checklist items (like its text) unselectable */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -71,6 +99,7 @@ ul li.checked::before {
     padding: 12px 16px 12px 16px;
 }
 
+/* Changes close button color on hover */
 .close:hover {
     background-color: #f44336;
     color: white;
@@ -120,26 +149,7 @@ input {
     border-radius: 0;
 }
 
+/* Add button hover color */
 .addBtn:hover {
     background-color: #bbb;
-}
-
-.container
-{
-    border-radius: 25px;
-    padding: 0px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    border: 20px solid white;
-    background-color:white;
-    width: 60%;
-    /* Shadow values from https://www.w3schools.com/css/css3_buttons.asp */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-@font-face {
-    font-family: visby;
-    src: url(visby_medium.otf);
 }

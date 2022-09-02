@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- To-Do list code based off: https://www.w3schools.com/howto/howto_js_todolist.asp -->
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,9 +8,9 @@
     </head>
     <body>
         <!-- Container that holds all website's UI: todo title, input text, checkable list -->
-        <main class="container p-5">
+        <main class="container">
             <div id="myDIV" class="header">
-                <h2 style="margin:5px">To Do List</h2>
+                <h2 style="margin:5px">To-Do List</h2>
                 <input type="text" id="myInput" placeholder="Title...">
                 <span onclick="newElement()" class="addBtn">Add</span>
             </div>
@@ -17,9 +18,12 @@
             </ul>
         </main>
 
+        <!-- Javascript file from https://dev.to/official_fire/creating-a-confetti-effect-in-5-minutes-16h3 -->
+        <script src="confetti.js"></script>
+
         <!--Javascript for adding, deleting, and checking off items in todo list  -->
         <script>
-            // Create a "close" button and append it to each list item
+            // Create a "close" button and append it to each checklist item
             var myNodelist = document.getElementsByTagName("LI");
             var i;
             for (i = 0; i < myNodelist.length; i++) {
@@ -30,21 +34,41 @@
               myNodelist[i].appendChild(span);
             }
             
-            // Click on a close button to hide the current list item
+            // Click on a close button to hide the current checklist item
             var close = document.getElementsByClassName("close");
             var i;
             for (i = 0; i < close.length; i++) {
               close[i].onclick = function() {
                 var div = this.parentElement;
+                // none attribute hides item
                 div.style.display = "none";
               }
             }
+
+            // Start and stop confetti screen animations
+            const start = () => {
+                setTimeout(function() {
+                    confetti.start()
+                }, 0); 
+            };
+
+            const stop = () => {
+                setTimeout(function() {
+                    confetti.stop()
+                }, 1000); 
+            };
             
             // Add a "checked" symbol when clicking on a list item
             var list = document.querySelector('ul');
             list.addEventListener('click', function(ev) {
               if (ev.target.tagName === 'LI') {
                 ev.target.classList.toggle('checked');
+
+                // Adds a confetti animation to screen if a item is checked off
+                if (ev.target.classList.value == 'checked') {
+                  start();
+                  stop();
+                }
               }
             }, false);
             
@@ -54,6 +78,8 @@
               var inputValue = document.getElementById("myInput").value;
               var t = document.createTextNode(inputValue);
               li.appendChild(t);
+
+              // Checks for actual input before submission
               if (inputValue === '') {
                 alert("You must write something!");
               } else {
