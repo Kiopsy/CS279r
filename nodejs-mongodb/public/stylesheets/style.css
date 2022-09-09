@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* App background */
+body {
+    background: #ed2939;
+}
+
+/* To-do container */
+.todo-container {
+    color: white;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    padding: 20px;
+    width: 600px;
+    transform: translate(-50%,-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Shadow values from https://www.w3schools.com/css/css3_buttons.asp */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.todo {
+    width: 400px;
+}
+
+/* Heading within To-do container */
+.todo-container h2 {
+    padding: 10px;
+    font-family: 'Candal', sans-serif;
+    font-size: 2em;
+}
+
+/* Input within To-do container */
+.todo-header input {
+    width: 92%;
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+    font-family: 'Candal', sans-serif;
+}
+
+/* Add button within To-do container */
+.todo-header button {
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Candal', sans-serif;
+    background-color: rgb(51, 212, 100);
+}
+
+/* To-do list */
+.todo-container ul {
+    list-style: none;
+}
+
+.todo-list-item {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Candal', sans-serif;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+}
+
+.todo-list-item form {
+    width: 100%;
+    display: flex;
+}
+
+.todo-list-item input {
+    flex-grow: 2;
+    margin-right: 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Candal', sans-serif;
+}
+
+/* To-do update button */
+.todo-list-item button {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Candal', sans-serif;
+    background-color: rgb(51, 212, 100);
+}
+
+/* To-do cancel button */
+.todo-list-item .cancel {
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Candal', sans-serif;
+    background-color: rgb(223, 43, 43);
+    margin-left: 5px;
+}
+
+.todo-list-item div {
+    flex-grow: 2; 
+}
+
+/* To-do edit button */
+.todo-list-item .edit {
+    color : rgb(143, 233, 58);
+    margin-right: 10px;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+/* To-do remove button */
+.todo-list-item .remove {
+    color : rgb(243, 96, 96);
+    margin-right: 5px;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+/* To-do container */
+.todo-list {
+    /* Adding overflow & scrolling functionality */
+    padding-right: 2%;
+    height: 250px;
+    overflow:auto;
+}
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
