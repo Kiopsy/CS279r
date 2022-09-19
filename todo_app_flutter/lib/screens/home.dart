@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -20,6 +23,10 @@ class _HomeState extends State<Home> {
   List<ToDo> _foundToDo = [];
   final _todoController = TextEditingController();
 
+  // Instatiate confetti controllers
+  final rightConfettiController = ConfettiController(duration: const Duration(seconds: 1));
+  final leftConfettiController = ConfettiController(duration: const Duration(seconds: 1));
+
   @override
   void initState() {
     // Initializes to-do list
@@ -27,127 +34,165 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+   @override
+  void dispose() {
+    rightConfettiController.dispose();
+    leftConfettiController.dispose();
+    super.dispose();
+  }
+
   // Application's home widget
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // Sets application background color
-      backgroundColor: tdBGColor,
-      // Builds custom app bar using _buildAppBar() below
-      appBar: _buildAppBar(),
-      // Horizontal stack widget
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15,
-            ),
-            margin: const EdgeInsets.only(
-              bottom: 60
-            ),
-            child: Column(
-              children: [
-                // Searchbox widget at the top
-                // searchBox(),
-                Expanded(
-                  // ListView widget to hold to-do items
-                  child: ListView(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          bottom: 20,
-                        ),
-                        // Title to-do text
-                        child: const Text(
-                          'All ToDos',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white
+    // Return stack for confetti widget
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        // Place overall scaffold into stack
+        Scaffold(
+          // Sets application background color
+          backgroundColor: tdBGColor,
+          // Builds custom app bar using _buildAppBar() below
+          appBar: _buildAppBar(),
+          // Horizontal stack widget
+          body: Stack(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
+                margin: const EdgeInsets.only(
+                  bottom: 60
+                ),
+                child: Column(
+                  children: [
+                    // Searchbox widget at the top
+                    // searchBox(),
+                    Expanded(
+                      // ListView widget to hold to-do items
+                      child: ListView(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(
+                              bottom: 20,
+                            ),
+                            // Title to-do text
+                            child: const Text(
+                              'All ToDos',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white
+                              ),
+                            ),
                           ),
-                        ),
+                          // Adds each to-do object in to-do list to ListView
+                          for (ToDo todoo in _foundToDo.reversed)
+                            ToDoItem(
+                              todo: todoo,
+                              onToDoChanged: _handleToDoChange,
+                              onDeleteItem: _deleteToDoItem,
+                            ),
+                        ],
                       ),
-                      // Adds each to-do object in to-do list to ListView
-                      for (ToDo todoo in _foundToDo.reversed)
-                        ToDoItem(
-                          todo: todoo,
-                          onToDoChanged: _handleToDoChange,
-                          onDeleteItem: _deleteToDoItem,
-                        ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          // Floating container for adding To-do items
-          Align(
-            // At bottom-center of the screen
-            alignment: Alignment.bottomCenter,
-            child: Row(children: [
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
-                    right: 20,
-                    left: 20,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 5,
-                  ),
-                  // Adds a shadow to the to-do list adder container
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 0.0),
-                        blurRadius: 10.0,
-                        spreadRadius: 0.0,
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  // TextField for adding to-do items
-                  child: TextField(
-                    controller: _todoController,
-                    decoration: const InputDecoration(
-                        hintText: 'Add a new todo item',
-                        border: InputBorder.none),
-                  ),
+                    )
+                  ],
                 ),
               ),
-              // Container for adding to-do items
-              Container(
-                margin: const EdgeInsets.only(
-                  bottom: 20,
-                  right: 20,
-                ),
-                child: ElevatedButton(
-                  // Adding to-do item function
-                  onPressed: () {
-                    _addToDoItem(_todoController.text);
-                  },
-                  // Button for adding to-do items
-                  style: ElevatedButton.styleFrom(
-                    primary: tdYellow,
-                    minimumSize: const Size(60, 60),
-                    elevation: 10,
-                  ),
-                  child: const Text(
-                    '+',
-                    style: TextStyle(
-                      fontSize: 40,
+              // Floating container for adding To-do items
+              Align(
+                // At bottom-center of the screen
+                alignment: Alignment.bottomCenter,
+                child: Row(children: [
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                        bottom: 20,
+                        right: 20,
+                        left: 20,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 5,
+                      ),
+                      // Adds a shadow to the to-do list adder container
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 10.0,
+                            spreadRadius: 0.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      // TextField for adding to-do items
+                      child: TextField(
+                        controller: _todoController,
+                        decoration: const InputDecoration(
+                            hintText: 'Add a new todo item',
+                            border: InputBorder.none),
+                      ),
                     ),
                   ),
-                ),
+                  // Container for adding to-do items
+                  Container(
+                    margin: const EdgeInsets.only(
+                      bottom: 20,
+                      right: 20,
+                    ),
+                    child: ElevatedButton(
+                      // Adding to-do item function
+                      onPressed: () {
+                        _addToDoItem(_todoController.text);
+                      },
+                      // Button for adding to-do items
+                      style: ElevatedButton.styleFrom(
+                        primary: tdYellow,
+                        minimumSize: const Size(60, 60),
+                        elevation: 10,
+                      ),
+                      child: const Text(
+                        '+',
+                        style: TextStyle(
+                          fontSize: 40,
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
-            ]),
+            ],
           ),
-        ],
-      ),
+        ),
+        // Align widget to center confetti widget at right
+        Align(
+          alignment: Alignment.centerRight,
+          child: ConfettiWidget(
+            confettiController: rightConfettiController,
+            blastDirection: pi, // radial value - LEFT
+            emissionFrequency: 0.5, // how often it should emit
+            numberOfParticles: 10, // number of particles to emit
+            gravity: 0.1, // gravity - or fall speed
+          ),
+        ),
+
+        // Align widget to center confetti widget at left
+        Align(
+          alignment: Alignment.centerLeft,
+          // Confetti Widget
+          child: ConfettiWidget(
+            confettiController: leftConfettiController,
+            blastDirection: 0, // radial value - RIGHT
+            emissionFrequency: 0.5, // how often it should emit
+            numberOfParticles: 10, // number of particles to emit
+            gravity: 0.1,
+          ),
+        ),
+      ],
     );
   }
 
@@ -156,6 +201,11 @@ class _HomeState extends State<Home> {
     setState(() {
       // Flips to-do item's isDone state
       todo.isDone = !todo.isDone;
+      // Play confetti on left and right sides if user is checking off to-do
+      if (todo.isDone) {
+        rightConfettiController.play();
+        leftConfettiController.play();
+      }
     });
   }
 
