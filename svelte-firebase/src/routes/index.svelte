@@ -6,8 +6,6 @@
   //import onMount
   import { onMount } from 'svelte';
 
-  import Confetti from "./confetti"
-
   // import firebase commands
   import { initializeApp, getApps, getApp } from "firebase/app";
   import {
