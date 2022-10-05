@@ -1,0 +1,21 @@
+/* Main todo container text styling */
+.container
+{
+	/* Margins */
+    margin-top: 5%;
+	margin-bottom: 5%;
+	padding: 20px;
+	/* Container background */
+	background: #f4f4f4;
+    width: fit-content;
+    height: 80%;
+	position: relative;
+	/* Stacked page effect */
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+				0 25px 50px 0 rgba(0, 0, 0, 0.1),
+				0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
