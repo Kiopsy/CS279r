@@ -2,7 +2,7 @@
 
 Simple Flask Todo App using SQLAlchemy and SQLite database.
 
-For most of this assignment, the code is based off the [source code](https://www.youtube.com/playlist?list=PLm_Qt4aKpfKiGbdjaHdOpry6Neza0etxZ). For extensions, I changed the UI, and added this cool stacked pages effect on the todo container itself. Furthermore, I added confetti that runs over the screen only when a user completes a todo.   
+For most of this assignment, the code is based off the [source code](https://github.com/onurtacc/flask-todo-app). For extensions, I changed the UI, and added this cool stacked pages effect on the todo container itself. Furthermore, I added confetti that runs over the screen only when a user completes a todo.   
 
 ## Differences from previous frameworks
 Flask is a very interesting framework in the sense that it works similar to Svelte and Node.js by allowing us to put flask code in HTMLs and pass in variables upon rendering a template. It is super easy to use since it uses Python (which is different than any other framework we have used), but also pairs well with HTML and Javascript (allowing me to easily add a confetti script for example). Also, Flask pairs really well with SQL or SQLite which makes it easy to get a simple database up and running. However, running the SQL script at first can be a little difficult to use. 
