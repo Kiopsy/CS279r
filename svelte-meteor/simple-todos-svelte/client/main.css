@@ -1,21 +1,22 @@
+/* overall styling for the app */
+
+/* colors for the body background */
 body {
   font-family: sans-serif;
   background-color: #315481;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
   background-attachment: fixed;
-
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-
   padding: 0;
   margin: 0;
-
   font-size: 14px;
 }
 
+/* button styling */
 button {
   font-weight: bold;
   font-size: 1em;
@@ -30,6 +31,7 @@ button:focus {
   outline: 0;
 }
 
+/* overall app container */
 .app {
   display: flex;
   flex-direction: column;
@@ -57,6 +59,7 @@ button:focus {
   background: inherit;
 }
 
+/* heading stylings: */
 header {
   background: #d2edf4;
   background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
@@ -77,6 +80,7 @@ header {
   margin-right: 1em;
 }
 
+/* form stylign */
 .task-form {
   display: flex;
   margin: 16px;
@@ -103,6 +107,7 @@ header {
   background-color: #315481;
 }
 
+/* todo list styling */
 .tasks {
   list-style-type: none;
   padding-inline-start: 0;
@@ -127,6 +132,7 @@ header {
   background-color: #ff3046;
 }
 
+/* filter button styling */
 .filter {
   display: flex;
   justify-content: center;
@@ -136,6 +142,7 @@ header {
   background-color: #62807e;
 }
 
+/* login form styling */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -182,6 +189,7 @@ header {
   font-weight: bold;
 }
 
+/* loading "screen" */
 .loading {
   display: flex;
   flex-direction: column;
